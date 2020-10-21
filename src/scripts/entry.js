@@ -1,0 +1,1 @@
+document.write("<div>Это говняха из ДИВа</div>");

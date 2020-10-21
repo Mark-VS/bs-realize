@@ -2,6 +2,7 @@ let gulp = require("gulp");
 let pug = require("gulp-pug");
 let sass = require("gulp-sass");
 sass.compiler = require("node-sass");
+let webpack = require("webpack-stream");
 
 let PATHS = {
     src: {
@@ -25,4 +26,13 @@ gulp.task("styles", () => {
     return gulp.src(PATHS.src.scss + "main.scss")
         .pipe(sass().on("error", sass.logError))
         .pipe(gulp.dest(PATHS.dist.css));
+});
+gulp.task("compile", () => {
+    return gulp.src("./src/scripts/entry.js")
+        .pipe(webpack({
+            output: {
+                filename: "result.js"
+            }
+        }))
+        .pipe(gulp.dest("./dist/scripts/"));
 });

@@ -3,15 +3,18 @@ let pug = require("gulp-pug");
 let sass = require("gulp-sass");
 sass.compiler = require("node-sass");
 let webpack = require("webpack-stream");
+let browserSync = require("browser-sync").create();
 
 let PATHS = {
     src: {
         pug: "./src/views/",
-        scss: "./src/scss/"
+        scss: "./src/scss/",
+        js: "./src/scripts/"
     },
     dist: {
         html: "./dist/",
-        css: "./dist/styles/"
+        css: "./dist/styles/",
+        js: "./dist/scripts/"
     }
 }
 
@@ -28,11 +31,27 @@ gulp.task("styles", () => {
         .pipe(gulp.dest(PATHS.dist.css));
 });
 gulp.task("compile", () => {
-    return gulp.src("./src/scripts/entry.js")
+    return gulp.src(PATHS.src.js + "entry.js")
         .pipe(webpack({
             output: {
                 filename: "result.js"
-            }
+            },
+            mode: "development"
         }))
-        .pipe(gulp.dest("./dist/scripts/"));
+        .pipe(gulp.dest(PATHS.dist.js));
 });
+gulp.task("startServer", () => {
+    browserSync.init({
+        server: {
+            baseDir: "./dist/"
+        },
+        open: false
+    });
+    browserSync.watch("./dist/", browserSync.reload);
+});
+
+gulp.task("default", gulp.series("views", "styles", "compile", "startServer"));
+
+gulp.watch(PATHS.src.pug + "index.pug", gulp.series("views"));
+gulp.watch(PATHS.src.scss + "main.scss", gulp.series("styles"));
+gulp.watch(PATHS.src.js + "entry.js", gulp.series("compile"));

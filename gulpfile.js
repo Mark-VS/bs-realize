@@ -6,6 +6,7 @@ let webpack = require("webpack-stream");
 let browserSync = require("browser-sync").create();
 let concat = require("gulp-concat");
 
+
 let PATHS = {
     src: {
         pug: "./src/views/",
@@ -55,5 +56,5 @@ gulp.task("startServer", () => {
 gulp.task("default", gulp.series("views", "styles", "compile", "startServer"));
 
 gulp.watch(PATHS.src.pug + "index.pug", gulp.series("views"));
-gulp.watch(PATHS.src.scss + "main.scss", gulp.series("styles"));
+gulp.watch(PATHS.src.scss + "*.scss", gulp.series("styles"));
 gulp.watch(PATHS.src.js + "entry.js", gulp.series("compile"));

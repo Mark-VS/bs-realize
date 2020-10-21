@@ -1,0 +1,15 @@
+{
+  "name": "bs-example2",
+  "version": "1.0.0",
+  "description": "This is the second version of the BS Example projects",
+  "main": "index.js",
+  "author": "Mark Solovyev",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0",
+    "gulp-pug": "^4.0.1",
+    "gulp-sass": "^4.1.0",
+    "node-sass": "^4.14.1"
+  }
+}

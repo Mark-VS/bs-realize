@@ -4,6 +4,7 @@ let sass = require("gulp-sass");
 sass.compiler = require("node-sass");
 let webpack = require("webpack-stream");
 let browserSync = require("browser-sync").create();
+let concat = require("gulp-concat");
 
 let PATHS = {
     src: {
@@ -17,7 +18,7 @@ let PATHS = {
         js: "./dist/scripts/"
     }
 }
-
+const norm = "./node_modules/normalize.css/normalize.css";
 
 
 gulp.task("views", () => {
@@ -26,7 +27,8 @@ gulp.task("views", () => {
         .pipe(gulp.dest(PATHS.dist.html));
 });
 gulp.task("styles", () => {
-    return gulp.src(PATHS.src.scss + "main.scss")
+    return gulp.src([norm, PATHS.src.scss + "main.scss"])
+        .pipe(concat("main.scss"))
         .pipe(sass().on("error", sass.logError))
         .pipe(gulp.dest(PATHS.dist.css));
 });

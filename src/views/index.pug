@@ -4,5 +4,58 @@ html
         title Это тайтл
     body
         link(href="styles/main.css" rel="stylesheet" type="text/css")
-        p Это обычный текст3     
-        script(src="scripts/result.js")
+        p Это обычный текст5     
+        //script(src="popper.js")
+        .container.border.border-dark
+            
+            .row
+                .col-12
+                    h5 Пример использования bootstrap-сетки
+                .col.border.border-primary Первая колонка
+                .col.border.border-success Вторая колонка
+                .col
+                    p.text-right простой текст
+                .col-12
+                    h5 Пример использования компонента Breadcrumb
+                .col-3
+                    nav(aria-label="breadcrumb")
+                        ol.breadcrumb
+                            li.breadcrumb-item
+                                a(href="#") Home
+                            li.breadcrumb-item
+                                a(href="#") Library
+                            li.breadcrumb-item.active(aria-current="page") Data
+                .col-9 -
+
+                .col-12 
+                    h5.border.border-success.w-25.mx-auto Проверка Поппера
+                .col-12
+                    button.btn.btn-danger#button(type="button" aria-descripbedby="tooltip") I'm a button
+                    div(id="tooltip" role="tooltip") I'm a tooltip
+                .col-12
+                    h5 Проверка Tooltip'а
+                .col-12
+                    button.btn.btn-secondary(type="button" data-toggle="tooltip" data-placement="top" title="Всплывающий текст") Tooltip on top
+                .col-12
+                    h5 Проверка Dropdown'а
+                .col-12
+                    .dropdown
+                        button.btn.btn-secondary.dropdown-toggle(type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Кнопка выпадающего меню
+                            .dropdown-menu(aria-labelledby="dropdownMenuButton")
+                                a.dropdown-item(href="#") Action
+                                a.dropdown-item(href="#") Другой Action
+                                a.dropdown-item(href="#") Что-то там ещё и ещё и ещё
+                .col-12
+                    h5 Проверка Input group
+                .col-12
+                    .input-group.mb-3
+                        .input-group-prepend
+                            span.input-group-text(id="basic-addon1") @
+                        input.form-control(type="text" placeholder="Username" aria-label="Username" aria-describedby="basic-addon2")
+                    .input-group
+                        .input-group-prepend
+                            span.input-group-text Сраный текст
+                        textarea.form-control(aria-label="With textarea")
+
+
+    script(src="scripts/result.js")

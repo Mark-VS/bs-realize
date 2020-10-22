@@ -6,17 +6,18 @@ let webpack = require("webpack-stream");
 let browserSync = require("browser-sync").create();
 let concat = require("gulp-concat");
 
-
+let src = "./src/";
+let dist = "./dist/";
 let PATHS = {
     src: {
-        pug: "./src/views/",
-        scss: "./src/scss/",
-        js: "./src/scripts/"
+        pug: src + "views/",
+        scss: src + "scss/",
+        js: src + "scripts/"
     },
     dist: {
-        html: "./dist/",
-        css: "./dist/styles/",
-        js: "./dist/scripts/"
+        html: dist,
+        css: dist + "styles/",
+        js: dist + "scripts/"
     }
 }
 const norm = "./node_modules/normalize.css/normalize.css";
@@ -46,11 +47,11 @@ gulp.task("compile", () => {
 gulp.task("startServer", () => {
     browserSync.init({
         server: {
-            baseDir: "./dist/"
+            baseDir: dist
         },
         open: false
     });
-    browserSync.watch("./dist/", browserSync.reload);
+    browserSync.watch(dist, browserSync.reload);
 });
 
 gulp.task("default", gulp.series("views", "styles", "compile", "startServer"));
